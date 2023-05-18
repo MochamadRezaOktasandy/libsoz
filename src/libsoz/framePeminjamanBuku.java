@@ -28,7 +28,7 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtTanggal = new javax.swing.JTextField();
-        lblIDBuku = new javax.swing.JLabel();
+        lblPilihBuku = new javax.swing.JLabel();
         txtLokasi = new javax.swing.JTextField();
         lblJudulPeminjaman = new javax.swing.JLabel();
         lblLokasi = new javax.swing.JLabel();
@@ -39,8 +39,8 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblIDBuku.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
-        lblIDBuku.setText("ID Buku");
+        lblPilihBuku.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
+        lblPilihBuku.setText("Pilih Buku");
 
         lblJudulPeminjaman.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
         lblJudulPeminjaman.setText("Peminjaman Buku");
@@ -62,7 +62,7 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblLokasi)
-                    .addComponent(lblIDBuku)
+                    .addComponent(lblPilihBuku)
                     .addComponent(txtUsername)
                     .addComponent(lblUsername)
                     .addComponent(txtTanggal)
@@ -88,7 +88,7 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblIDBuku)
+                .addComponent(lblPilihBuku)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtIDBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -149,9 +149,9 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblIDBuku;
     private javax.swing.JLabel lblJudulPeminjaman;
     private javax.swing.JLabel lblLokasi;
+    private javax.swing.JLabel lblPilihBuku;
     private javax.swing.JLabel lblTanggal;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtIDBuku;

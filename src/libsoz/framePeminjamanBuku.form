@@ -42,7 +42,7 @@
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lblLokasi" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblIDBuku" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPilihBuku" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtUsername" alignment="0" max="32767" attributes="0"/>
                       <Component id="lblUsername" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtTanggal" alignment="0" max="32767" attributes="0"/>
@@ -72,7 +72,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtUsername" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="lblIDBuku" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPilihBuku" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtIDBuku" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -87,12 +87,12 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtTanggal">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblIDBuku">
+        <Component class="javax.swing.JLabel" name="lblPilihBuku">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SimSun" size="13" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ID Buku"/>
+            <Property name="text" type="java.lang.String" value="Pilih Buku"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtLokasi">
