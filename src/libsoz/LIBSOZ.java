@@ -15,11 +15,8 @@ public class LIBSOZ {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        frameLogin login = new frameLogin();
-//        login.main(null);
-
-        frameMembership member = new frameMembership();
-        member.main(null);
+        frameLogin login = new frameLogin();
+        login.main(null);
     }
     
 }

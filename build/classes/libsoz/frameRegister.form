@@ -219,6 +219,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="you already have an account? Login now!"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblLoginMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

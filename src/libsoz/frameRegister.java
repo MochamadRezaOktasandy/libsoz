@@ -83,6 +83,11 @@ public class frameRegister extends frameMaster {
 
         lblLogin.setFont(new java.awt.Font("SimSun-ExtB", 0, 12)); // NOI18N
         lblLogin.setText("you already have an account? Login now!");
+        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLoginMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,6 +254,13 @@ public class frameRegister extends frameMaster {
             txtConfirmPassword1.setEchoChar('*'); // Mengatur karakter echo ke '*' untuk menyembunyikan teks
         }
     }//GEN-LAST:event_cbCFShowPassword1ActionPerformed
+
+    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
+        // TODO add your handling code here:
+        frameLogin login = new frameLogin();
+        login.main(null);
+        this.dispose();
+    }//GEN-LAST:event_lblLoginMouseClicked
 
     /**
      * @param args the command line arguments

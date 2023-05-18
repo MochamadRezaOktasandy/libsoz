@@ -150,38 +150,34 @@ public class frameLogin extends frameMaster {
         // TODO add your handling code here:
         frameRegister register = new frameRegister();
         register.main(null);
+        this.dispose();
     }//GEN-LAST:event_lblRegisterMouseClicked
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
         // TODO add your handling code here:
         username = txtUsername.getText();
         password = new String(txtPassword.getPassword());
+//        String md5PWD = md5(password);
 
         try
         {
+//            String sql = "SELECT username, password FROM user WHERE username='" + username + "' AND password='" + md5PWD + "' ";
             String sql = "SELECT username, password FROM user WHERE username='" + username + "' AND password='" + password + "' ";
             ResultSet rs = (ResultSet) db.getRS(sql);
-
-            if (rs.next())
+            int size = 0;
+            while (rs.next()) 
             {
-                JOptionPane.showMessageDialog(this, "Login Berhasil!", "Message" , JOptionPane.INFORMATION_MESSAGE);
-
-                //                String role = rs.getString("role");
-                //                if (role.equals("Admin"))
-                //                {
-                    //                    frameDataPeminjamBuku dataPinjam = new frameDataPeminjamBuku();
-                    //                    dataPinjam.setVisible(true);
-                    //                    this.setVisible(false);
-                    //                }
-                //                else if (role.equals("User"))
-                //                {
-                    //                    framePeminjamanBuku peminjamanBuku = new framePeminjamanBuku();
-                    //                    peminjamanBuku.setVisible(true);
-                    //                    this.setVisible(false);
-                    //                }
+                size++;
             }
-            else
-            JOptionPane.showMessageDialog(this, "Pastikan username dan password yang anda masukkan benar!", "Login", JOptionPane.ERROR_MESSAGE);
+            if (size == 0)
+            {
+                JOptionPane.showMessageDialog(this, "Pastikan username dan password yang anda masukkan benar!", "Login", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            //JOptionPane.showMessageDialog(this, "Login Berhasil!", "Message" , JOptionPane.INFORMATION_MESSAGE);
+            
+            
+
         }
         catch (Exception e)
         {
