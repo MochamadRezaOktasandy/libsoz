@@ -2,6 +2,9 @@ package libsoz;
 
 import com.mysql.jdbc.ResultSet;
 import javax.swing.JOptionPane;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class frameLogin extends frameMaster {
     String username = "";
@@ -157,12 +160,11 @@ public class frameLogin extends frameMaster {
         // TODO add your handling code here:
         username = txtUsername.getText();
         password = new String(txtPassword.getPassword());
-//        String md5PWD = md5(password);
-
+        String md5PWD = hashPassword(password);
+        
         try
         {
-//            String sql = "SELECT username, password FROM user WHERE username='" + username + "' AND password='" + md5PWD + "' ";
-            String sql = "SELECT username, password FROM user WHERE username='" + username + "' AND password='" + password + "' ";
+            String sql = "SELECT username, password FROM user WHERE username='" + username + "' AND password='" + md5PWD + "' ";
             ResultSet rs = (ResultSet) db.getRS(sql);
             int size = 0;
             while (rs.next()) 
@@ -174,10 +176,8 @@ public class frameLogin extends frameMaster {
                 JOptionPane.showMessageDialog(this, "Pastikan username dan password yang anda masukkan benar!", "Login", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            //JOptionPane.showMessageDialog(this, "Login Berhasil!", "Message" , JOptionPane.INFORMATION_MESSAGE);
             
-            
-
+            JOptionPane.showMessageDialog(this, "Login Berhasil!", "Message" , JOptionPane.INFORMATION_MESSAGE);
         }
         catch (Exception e)
         {
@@ -185,6 +185,25 @@ public class frameLogin extends frameMaster {
         }
     }//GEN-LAST:event_bLoginActionPerformed
 
+    public String hashPassword(String password) 
+    {
+        try 
+        {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (byte hashedByte : hashedBytes) {
+                stringBuilder.append(String.format("%02x", hashedByte));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
         // TODO add your handling code here:
         if (cbShowPassword.isSelected())

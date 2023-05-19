@@ -1,13 +1,23 @@
 package libsoz;
 
 import com.mysql.jdbc.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.nio.charset.StandardCharsets;
 
 public class frameRegister extends frameMaster {
 
     public String username = "";
     public String nama = "";
+    public String noTelp = "";
+    public String tanggal = "";
+    public String alamat = "";
+    public String role = "";
     public String password = "";
     public String conPassword = "";
     
@@ -105,7 +115,7 @@ public class frameRegister extends frameMaster {
         lblRole.setFont(new java.awt.Font("SimSun", 0, 15)); // NOI18N
         lblRole.setText("Role");
 
-        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "admin", "pegawai", "user" }));
+        cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Pegawai", "User" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -221,12 +231,27 @@ public class frameRegister extends frameMaster {
 
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
         // TODO add your handling code here:
+        Date date = jDateChooser1.getDate();
+        if (date != null) 
+        {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            tanggal = df.format(date);
+        } 
+        else 
+        {
+            JOptionPane.showMessageDialog(this, "Tanggal tidak boleh kosong!", "Coba Lagi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         username = txtUsername.getText();
         nama = txtNamaLengkap.getText();
+        noTelp = txtNoTelp.getText();
+        alamat = txtAlamat.getText();
         password = new String(txtPassword.getPassword());
         conPassword =  new String(txtConfirmPassword1.getPassword());
+        role = cbRole.getSelectedItem().toString();
         
-        if (username.isEmpty() || password.isEmpty() || nama.isEmpty())
+        if (username.isEmpty() || password.isEmpty() || nama.isEmpty() || noTelp.isEmpty() || alamat.isEmpty())
             JOptionPane.showMessageDialog(this, "Data Tidak Boleh Kosong!", "Message", JOptionPane.INFORMATION_MESSAGE);
             
         else if(password.length() < 8)
@@ -238,34 +263,37 @@ public class frameRegister extends frameMaster {
         else
         {
             //cek username sudah dipakai?
-            try 
-            {
-               String sql = "SELECT username FROM user WHERE username = '" + username +"'";
-               ResultSet rs = (ResultSet) db.getRS(sql);
-               if (rs.last()) 
-               {
-                   int rows = rs.getRow();
+           try 
+           {
+                String checkUsernameSql = "SELECT username FROM user WHERE username = '" + username + "'";
+                ResultSet rs = (ResultSet) db.getRS(checkUsernameSql);
+                if (rs.last()) 
+                {
+                    int rows = rs.getRow();
+                    if (rows == 1) 
+                    {
+                        JOptionPane.showMessageDialog(this, "Username ini sudah digunakan!", "Warning", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
 
-                   if(rows == 1)
-                   {
-                       JOptionPane.showMessageDialog(this, "Username ini sudah digunakan!", "Warning", JOptionPane.ERROR_MESSAGE);
-                       return;
-                   }
-               }
+                String insertUserSql = "INSERT INTO user(username, password, role) VALUES('" + username + "', '" + hashPassword(password) + "', '" + role + "')";
+                boolean userSuccess = db.Execute(insertUserSql);
 
-               sql = "INSERT INTO user(username, nama, password) values('" + username + "', '" + nama + "', '" + password + "')";
-               boolean success = db.Execute(sql);
-               
-               if (success)
-               {
+                String insertMemberSql = "INSERT INTO member(username, nama, tgl_lahir, no_telp, alamat) VALUES('" + username + "', '" + nama + "', '" + tanggal + "' , '" + noTelp + "' , '" + alamat + "')";
+                boolean memberSuccess = db.Execute(insertMemberSql);
+
+                if (userSuccess && memberSuccess) 
+                {
                     JOptionPane.showMessageDialog(this, "Register Berhasil!", "Message", JOptionPane.INFORMATION_MESSAGE);
-                    
                     frameLogin login = new frameLogin();
                     login.main(null);
                     this.dispose();
-               }
-               else
-                   JOptionPane.showMessageDialog(this, "Register Gagal!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                } 
+                else 
+                {
+                    JOptionPane.showMessageDialog(this, "Register Gagal!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                }
             } 
             catch (Exception e) 
             {
@@ -274,6 +302,23 @@ public class frameRegister extends frameMaster {
         }
     }//GEN-LAST:event_bRegisterActionPerformed
 
+    public String hashPassword(String password) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            byte[] hashedBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (byte hashedByte : hashedBytes) {
+                stringBuilder.append(String.format("%02x", hashedByte));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
         // TODO add your handling code here:
         if (cbShowPassword.isSelected()) 
