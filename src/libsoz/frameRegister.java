@@ -23,6 +23,7 @@ public class frameRegister extends frameMaster {
     
     public frameRegister() {
         initComponents();
+        cbRole.setVisible(false);
     }
 
     
@@ -116,6 +117,11 @@ public class frameRegister extends frameMaster {
         lblRole.setText("Role");
 
         cbRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Pegawai", "User" }));
+        cbRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRoleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -349,6 +355,11 @@ public class frameRegister extends frameMaster {
         login.main(null);
         this.dispose();
     }//GEN-LAST:event_lblLoginMouseClicked
+
+    private void cbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRoleActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbRoleActionPerformed
 
     /**
      * @param args the command line arguments

@@ -21,7 +21,6 @@ public class frameLogin extends frameMaster {
 
         jPanel1 = new javax.swing.JPanel();
         lblJudul1 = new javax.swing.JLabel();
-        lblJudul2 = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
@@ -37,9 +36,6 @@ public class frameLogin extends frameMaster {
 
         lblJudul1.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 24)); // NOI18N
         lblJudul1.setText("LIBRARY SOZ");
-
-        lblJudul2.setFont(new java.awt.Font("SimSun", 0, 14)); // NOI18N
-        lblJudul2.setText("son of zeus");
 
         lblUsername.setFont(new java.awt.Font("SimSun", 0, 15)); // NOI18N
         lblUsername.setText("Username");
@@ -81,13 +77,8 @@ public class frameLogin extends frameMaster {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(lblJudul1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(lblJudul2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(54, 54, 54)
+                .addComponent(lblJudul1)
                 .addGap(94, 94, 94)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -118,9 +109,7 @@ public class frameLogin extends frameMaster {
                     .addComponent(lblJudul1)
                     .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblJudul2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(lblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,7 +249,6 @@ public class frameLogin extends frameMaster {
     private javax.swing.JCheckBox cbShowPassword;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblJudul1;
-    private javax.swing.JLabel lblJudul2;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRegister;
     private javax.swing.JLabel lblUsername;

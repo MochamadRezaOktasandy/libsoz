@@ -37,12 +37,13 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
         lblTahun = new javax.swing.JLabel();
         txtTahun = new javax.swing.JTextField();
         lblKategori = new javax.swing.JLabel();
-        txtKategori = new javax.swing.JTextField();
         lblLokasi = new javax.swing.JLabel();
         txtLokasi = new javax.swing.JTextField();
         lblSampul = new javax.swing.JLabel();
-        txtSampul = new javax.swing.JTextField();
         bDaftarBuku = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        bUpload = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,12 +65,6 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
         lblKategori.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblKategori.setText("Kategori");
 
-        txtKategori.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKategoriActionPerformed(evt);
-            }
-        });
-
         lblLokasi.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblLokasi.setText("Lokasi");
 
@@ -78,6 +73,28 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
 
         bDaftarBuku.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 13)); // NOI18N
         bDaftarBuku.setText("Daftar");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jPanel2.setBackground(new java.awt.Color(153, 255, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 206, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 196, Short.MAX_VALUE)
+        );
+
+        bUpload.setText("UPLOAD");
+        bUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bUploadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,30 +105,27 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(230, 230, 230))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bDaftarBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblKategori)
-                            .addComponent(lblLokasi)
-                            .addComponent(txtKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(txtTahun)
-                            .addComponent(lblTahun)
-                            .addComponent(txtPenerbit)
-                            .addComponent(lblPenerbit)
-                            .addComponent(txtPengarang)
-                            .addComponent(txtJudul)
-                            .addComponent(lblJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPengarang)
-                            .addComponent(txtLokasi))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSampul)
-                            .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(128, 128, 128))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblKategori)
+                    .addComponent(lblLokasi)
+                    .addComponent(txtTahun, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(lblTahun)
+                    .addComponent(txtPenerbit)
+                    .addComponent(lblPenerbit)
+                    .addComponent(txtPengarang)
+                    .addComponent(txtJudul)
+                    .addComponent(lblJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPengarang)
+                    .addComponent(txtLokasi)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSampul)
+                    .addComponent(bDaftarBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bUpload))
+                .addGap(132, 132, 132))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,12 +153,14 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblKategori)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblSampul)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSampul)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bUpload)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblLokasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -167,9 +183,12 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKategoriActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtKategoriActionPerformed
+    private void bUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUploadActionPerformed
+        //setelah sukses dapat buku yang dipilih, 
+        //1.Mengcopy file kedalam folder img
+        //2.Menyimpan di database bukuIDnya di kolom sampul table buku
+        //3.Menampilkan image sampul di JPanel
+    }//GEN-LAST:event_bUploadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,8 +227,11 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bDaftarBuku;
+    private javax.swing.JButton bUpload;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblJudul;
     private javax.swing.JLabel lblKategori;
     private javax.swing.JLabel lblLokasi;
@@ -218,11 +240,9 @@ public class framePendaftaranBuku extends javax.swing.JFrame {
     private javax.swing.JLabel lblSampul;
     private javax.swing.JLabel lblTahun;
     private javax.swing.JTextField txtJudul;
-    private javax.swing.JTextField txtKategori;
     private javax.swing.JTextField txtLokasi;
     private javax.swing.JTextField txtPenerbit;
     private javax.swing.JTextField txtPengarang;
-    private javax.swing.JTextField txtSampul;
     private javax.swing.JTextField txtTahun;
     // End of variables declaration//GEN-END:variables
 }

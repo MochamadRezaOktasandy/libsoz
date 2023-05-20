@@ -1,20 +1,11 @@
 package libsoz;
 
-import java.util.Calendar;
-import java.util.Date;
-import javax.swing.JFrame;
-import com.toedter.calendar.JDateChooser;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
-public class framePeminjamanBuku extends javax.swing.JFrame {
 
-//    public String tanggal = "";
-    public String username = "";
-    public String pilihBuku = "";
-    public String lokasiBuku = "";
+public class frameCariBuku extends frameMaster {
+
     
-    public framePeminjamanBuku() {
+    public frameCariBuku() {
         initComponents();
     }
 
@@ -29,34 +20,36 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
         lblJudulPeminjaman = new javax.swing.JLabel();
         lblLokasi = new javax.swing.JLabel();
         txtPilihBuku = new javax.swing.JTextField();
-        lblUsername = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        lblTanggal = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        bClose = new javax.swing.JButton();
+        txtSampul = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lblPilihBuku.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblPilihBuku.setText("Pilih Buku");
 
         lblJudulPeminjaman.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        lblJudulPeminjaman.setText("Peminjaman Buku");
+        lblJudulPeminjaman.setText("KIOSK - Cari Buku");
 
         lblLokasi.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblLokasi.setText("Lokasi Buku");
 
-        lblUsername.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
-        lblUsername.setText("username");
+        txtPilihBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPilihBukuMouseClicked(evt);
+            }
+        });
 
-        lblTanggal.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
-        lblTanggal.setText("Tanggal Peminjaman");
-
-        jButton1.setText("PINJAM");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bClose.setText("CLOSE");
+        bClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bCloseActionPerformed(evt);
             }
         });
 
@@ -65,36 +58,30 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblLokasi)
-                    .addComponent(lblPilihBuku)
-                    .addComponent(txtUsername)
-                    .addComponent(lblUsername)
-                    .addComponent(lblTanggal)
-                    .addComponent(txtPilihBuku)
-                    .addComponent(txtLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addComponent(lblJudulPeminjaman)
-                        .addGap(15, 15, 15))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)))
                 .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bClose, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblLokasi)
+                        .addComponent(lblPilihBuku)
+                        .addComponent(txtPilihBuku)
+                        .addComponent(txtLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblJudulPeminjaman)
-                .addGap(33, 33, 33)
-                .addComponent(lblTanggal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblPilihBuku)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPilihBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,9 +89,11 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
                 .addComponent(lblLokasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(bClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,21 +111,18 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCloseActionPerformed
         // TODO add your handling code here:
+       
         
-        Date date = new Date();
-        jDateChooser1.setDate(date);// Mengatur tanggal hari ini
-        jDateChooser1.setEnabled(false);//Menonaktifkan jDateChooser agar tidak bisa diklik
-        username = txtUsername.getText();
-        pilihBuku = txtPilihBuku.getText();
-        lokasiBuku = txtLokasi.getText();
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bCloseActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txtPilihBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPilihBukuMouseClicked
+       
+    }//GEN-LAST:event_txtPilihBukuMouseClicked
 
     
     public static void main(String args[]) {
@@ -153,35 +139,33 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new framePeminjamanBuku().setVisible(true);
+                new frameCariBuku().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton bClose;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblJudulPeminjaman;
     private javax.swing.JLabel lblLokasi;
     private javax.swing.JLabel lblPilihBuku;
-    private javax.swing.JLabel lblTanggal;
-    private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtLokasi;
     private javax.swing.JTextField txtPilihBuku;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtSampul;
     // End of variables declaration//GEN-END:variables
 }
