@@ -1,20 +1,23 @@
 package libsoz;
 
+import com.mysql.jdbc.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JFrame;
 import com.toedter.calendar.JDateChooser;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 
-public class framePeminjamanBuku extends javax.swing.JFrame {
+public class frameCariBuku extends javax.swing.JFrame {
 
-//    public String tanggal = "";
+    
+    //public String tanggal = "";
     public String username = "";
     public String pilihBuku = "";
     public String lokasiBuku = "";
-    
-    public framePeminjamanBuku() {
+
+    public frameCariBuku() {
         initComponents();
     }
 
@@ -29,34 +32,36 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
         lblJudulPeminjaman = new javax.swing.JLabel();
         lblLokasi = new javax.swing.JLabel();
         txtPilihBuku = new javax.swing.JTextField();
-        lblUsername = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        lblTanggal = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        bClose = new javax.swing.JButton();
+        txtSampul = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         lblPilihBuku.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblPilihBuku.setText("Pilih Buku");
 
         lblJudulPeminjaman.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        lblJudulPeminjaman.setText("Peminjaman Buku");
+        lblJudulPeminjaman.setText("Kiosk - Cari Buku");
 
         lblLokasi.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblLokasi.setText("Lokasi Buku");
 
-        lblUsername.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
-        lblUsername.setText("username");
+        txtPilihBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPilihBukuMouseClicked(evt);
+            }
+        });
 
-        lblTanggal.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
-        lblTanggal.setText("Tanggal Peminjaman");
-
-        jButton1.setText("PINJAM");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bClose.setText("CLOSE");
+        bClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bCloseActionPerformed(evt);
             }
         });
 
@@ -66,19 +71,17 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblLokasi)
-                    .addComponent(lblPilihBuku)
-                    .addComponent(txtUsername)
-                    .addComponent(lblUsername)
-                    .addComponent(lblTanggal)
-                    .addComponent(txtPilihBuku)
-                    .addComponent(txtLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblJudulPeminjaman)
-                        .addGap(15, 15, 15))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblLokasi)
+                        .addComponent(lblPilihBuku)
+                        .addComponent(txtPilihBuku)
+                        .addComponent(txtLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblJudulPeminjaman)
+                            .addGap(15, 15, 15))
+                        .addComponent(bClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -86,15 +89,7 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(lblJudulPeminjaman)
-                .addGap(33, 33, 33)
-                .addComponent(lblTanggal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblPilihBuku)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPilihBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,8 +97,10 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
                 .addComponent(lblLokasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -122,21 +119,54 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        Date date = new Date();
-        jDateChooser1.setDate(date);// Mengatur tanggal hari ini
-        jDateChooser1.setEnabled(false);//Menonaktifkan jDateChooser agar tidak bisa diklik
-        username = txtUsername.getText();
+    private void bCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCloseActionPerformed
         pilihBuku = txtPilihBuku.getText();
         lokasiBuku = txtLokasi.getText();
         
         
+        //         try 
+//           {
+//                String sql = "INSERT INTO pinjam(tgl_pinjam, username, role) VALUES('" + username + "', '" + hashPassword(password) + "', '" + role + "')";
+//                boolean userSuccess = db.Execute(insertUserSql);
+//
+//                if (userSuccess && memberSuccess) 
+//                {
+//                    JOptionPane.showMessageDialog(this, "Register Berhasil!", "Message", JOptionPane.INFORMATION_MESSAGE);
+//                    frameLogin login = new frameLogin();
+//                    login.main(null);
+//                    this.dispose();
+//                } 
+//                else 
+//                {
+//                    JOptionPane.showMessageDialog(this, "Register Gagal!", "Warning", JOptionPane.INFORMATION_MESSAGE);
+//                }
+//            } 
+//            catch (Exception e) 
+//            {
+//                System.out.println(e.getMessage());
+//            }  
+    }//GEN-LAST:event_bCloseActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        // Date date = new Date();
+        // jDateChooser1.setDate(date);// Mengatur tanggal hari ini
+        // jDateChooser1.setEnabled(false);//Menonaktifkan jDateChooser agar tidak bisa diklik
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txtPilihBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPilihBukuMouseClicked
+       //https://stackoverflow.com/questions/8409347/mouse-event-with-double-click-in-java
         
-        
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (evt.getClickCount() == 2 && !evt.isConsumed()) 
+        {
+            //Cara dapetin nilai dari frame Lain
+            framePemilihanBuku pilihBuku = new framePemilihanBuku();
+            //pilihBuku.main(null); //JANGAN PANGGIL MAIN DISINI
+            pilihBuku.setVisible(true); //Tampilkan JFRAME dengan ini
+            //String bukuID = pilihBuku.getBukuID(); //Ambil Nilai Disini, getBukuID() ada di frame yang kita show
+            //txtPilihBuku.setText(bukuID);
+        }
+    }//GEN-LAST:event_txtPilihBukuMouseClicked
 
     
     public static void main(String args[]) {
@@ -153,35 +183,33 @@ public class framePeminjamanBuku extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(framePeminjamanBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frameCariBuku.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new framePeminjamanBuku().setVisible(true);
+                new frameCariBuku().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton bClose;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblJudulPeminjaman;
     private javax.swing.JLabel lblLokasi;
     private javax.swing.JLabel lblPilihBuku;
-    private javax.swing.JLabel lblTanggal;
-    private javax.swing.JLabel lblUsername;
     private javax.swing.JTextField txtLokasi;
     private javax.swing.JTextField txtPilihBuku;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txtSampul;
     // End of variables declaration//GEN-END:variables
 }
