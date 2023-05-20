@@ -9,14 +9,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
-public class frameCariBuku extends javax.swing.JFrame {
+public class frameCariBuku extends frameMaster {
 
-    
-    //public String tanggal = "";
+//    public String tanggal = "";
     public String username = "";
     public String pilihBuku = "";
     public String lokasiBuku = "";
-
+    
     public frameCariBuku() {
         initComponents();
     }
@@ -47,7 +46,7 @@ public class frameCariBuku extends javax.swing.JFrame {
         lblPilihBuku.setText("Pilih Buku");
 
         lblJudulPeminjaman.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
-        lblJudulPeminjaman.setText("Kiosk - Cari Buku");
+        lblJudulPeminjaman.setText("KIOSK - Cari Buku");
 
         lblLokasi.setFont(new java.awt.Font("SimSun", 0, 13)); // NOI18N
         lblLokasi.setText("Lokasi Buku");
@@ -70,19 +69,23 @@ public class frameCariBuku extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(lblJudulPeminjaman)
+                        .addGap(10, 10, 10)))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bClose, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblLokasi)
                         .addComponent(lblPilihBuku)
                         .addComponent(txtPilihBuku)
-                        .addComponent(txtLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblJudulPeminjaman)
-                            .addGap(15, 15, 15))
-                        .addComponent(bClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addComponent(txtLokasi, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,11 +100,11 @@ public class frameCariBuku extends javax.swing.JFrame {
                 .addComponent(lblLokasi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtLokasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
                 .addComponent(txtSampul, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(bClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,11 +123,11 @@ public class frameCariBuku extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCloseActionPerformed
+        // TODO add your handling code here:
         pilihBuku = txtPilihBuku.getText();
         lokasiBuku = txtLokasi.getText();
         
-        
-        //         try 
+//         try 
 //           {
 //                String sql = "INSERT INTO pinjam(tgl_pinjam, username, role) VALUES('" + username + "', '" + hashPassword(password) + "', '" + role + "')";
 //                boolean userSuccess = db.Execute(insertUserSql);
@@ -144,27 +147,32 @@ public class frameCariBuku extends javax.swing.JFrame {
 //            catch (Exception e) 
 //            {
 //                System.out.println(e.getMessage());
-//            }  
+//            }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_bCloseActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        // Date date = new Date();
-        // jDateChooser1.setDate(date);// Mengatur tanggal hari ini
-        // jDateChooser1.setEnabled(false);//Menonaktifkan jDateChooser agar tidak bisa diklik
+//        Date date = new Date();
+//        jDateChooser1.setDate(date);// Mengatur tanggal hari ini
+//        jDateChooser1.setEnabled(false);//Menonaktifkan jDateChooser agar tidak bisa diklik
     }//GEN-LAST:event_formWindowOpened
 
     private void txtPilihBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPilihBukuMouseClicked
-       //https://stackoverflow.com/questions/8409347/mouse-event-with-double-click-in-java
+        //https://stackoverflow.com/questions/8409347/mouse-event-with-double-click-in-java
         
         if (evt.getClickCount() == 2 && !evt.isConsumed()) 
         {
             //Cara dapetin nilai dari frame Lain
             framePemilihanBuku pilihBuku = new framePemilihanBuku();
-            //pilihBuku.main(null); //JANGAN PANGGIL MAIN DISINI
+//            pilihBuku.main(null); //JANGAN PANGGIL MAIN DISINI
             pilihBuku.setVisible(true); //Tampilkan JFRAME dengan ini
-            //String bukuID = pilihBuku.getBukuID(); //Ambil Nilai Disini, getBukuID() ada di frame yang kita show
-            //txtPilihBuku.setText(bukuID);
+            String bukuID = pilihBuku.getBukuID(); //Ambil Nilai Disini, getBukuID() ada di frame yang kita show
+            txtPilihBuku.setText(bukuID);
         }
     }//GEN-LAST:event_txtPilihBukuMouseClicked
 
